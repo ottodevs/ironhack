@@ -32,7 +32,7 @@ class ShoppingCart
 
   def add_item_to_cart(item, qty = 1)
     @items[item] += qty
-    puts "Added #{item}"
+    puts "Added #{item}" # TODO: goes to print method *future
   end
 
   def empty
@@ -42,16 +42,22 @@ class ShoppingCart
 
   def show
     @items.each do |item, qty|
-      puts "#{qty} #{item}: #{cost(item)}" # is it well written?
+      puts "#{qty} #{item}: #{cost(item)}"
     end
   end
 
-  def cost(item = '')
-    if !item
-      # puts total cart cost
+  def cost(item = nil)
+    if !item # puts total cart cost
+      puts "Total cost: #{total_cost}"
     else
       qty = @items[item]
       qty * unit_price(item)
+    end
+  end
+
+  def total_cost
+    @items.keys.inject(0) do | sum, item |
+      sum + cost(item)
     end
   end
 
@@ -59,12 +65,15 @@ class ShoppingCart
     d = Date.today
     season = d.season
 
-    if FRUITS[item].include?(:price)
-      FRUITS[item][:price] # regular price
-    elsif d.sunday? && FRUITS[item].include?(:sunday)
-      FRUITS[item][:sunday] # sunday price
+    i = FRUITS[item]
+
+    if i.include?(:summer) #season price
+      i[d.season]
+    elsif d.sunday? && i.include?(:sunday) #sunday price
+      i[:sunday]
     else
-      FRUITS[item][d.season] # season price
+      i.include?(:price) #regular price
+      i[:price]
     end
   end
 end
@@ -76,11 +85,9 @@ cart.add_item_to_cart :banana
 cart.add_item_to_cart :banana
 
 cart.show
+cart.cost
 
-
-# d = Date.today
-# d.season
-
+# WHAT I WANT:
 =begin
 October 21st 2016
 
@@ -105,5 +112,4 @@ Discounts and deals applied:
 - Buy 3 oranges and pay just 2!
 - Buy 4 grapes you get one banana for free if you want!
 **********************
-
 =end
