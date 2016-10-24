@@ -67,13 +67,13 @@ class ShoppingCart
 
     i = FRUITS[item]
 
-    if i.include?(:summer) #season price
-      i[d.season]
-    elsif d.sunday? && i.include?(:sunday) #sunday price
-      i[:sunday]
-    else
-      i.include?(:price) #regular price
+    case
+    when i.has_key?(:sunday) #sunday price
+      i[:sunday] if d.sunday?
+    when i.has_key?(:price) #fixed price during whole year
       i[:price]
+    else #season price
+      i[d.season]
     end
   end
 end
