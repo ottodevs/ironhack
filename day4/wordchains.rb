@@ -1,4 +1,5 @@
 require 'ruby-dictionary'
+require "pry"
 
 class WordChain
   attr_accessor :dictionary
@@ -13,7 +14,7 @@ class WordChain
     start_word.chars.each_with_index do |current_char, index| # iterate start_word letters
       if start_word[index] != end_word[index] # if the chars are not the same
         start_word[index] = end_word[index] # assign the current end_word char to the start_word
-
+        #binding.pry
         if !dictionary.exists?start_word # if the new start_word is not found on dictionary
           start_word[index] = current_char # revert the change to the start_word
         else
@@ -31,13 +32,12 @@ end
 dictionary = Dictionary.from_file("/usr/share/dict/words")
 
 my_chain = WordChain.new(dictionary)
-my_chain.find_chain("cat", "dog")
-my_chain.find_chain("lead", "gold")
+# my_chain.find_chain("cat", "dog")
 my_chain.find_chain("ruby", "code")
-my_chain.find_chain("fish", "duct")
-my_chain.find_chain("mad", "car")
+# my_chain.find_chain("fish", "duct")
+# my_chain.find_chain("mad", "car")
 
-# problematic words
-my_chain.find_chain("book", "gave")
+# # problematic words
+# my_chain.find_chain("book", "gave")
 my_chain.find_chain("gold", "lead")
-my_chain.find_chain("duck", "ruby")
+# my_chain.find_chain("duck", "ruby")
