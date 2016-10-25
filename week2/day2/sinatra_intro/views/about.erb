@@ -1,0 +1,20 @@
+<link href="<%= url('/style.css') %>" rel="stylesheet" type="text/css" />
+
+<a href="/time">Go to time page</a> ||
+<a href="/">Home</a> ||
+<a href="/about">Refresh this</a>
+<br>
+<h1>Hi there!</h1>
+<p>This is <%= @author %>'s website.</p>
+<img src="https://www.placecage.com/gif/284/
+<%= (100 + rand(99)).to_s %>" alt="Nicolas Cage was there... try refresh">
+
+<br>
+
+Today is <%= Date.today %>
+
+<% if Date.today.tuesday? %>
+	<p>Today is tuesday</p>
+<% else %>
+	<p>Today is not tuesday</p>
+<% end %>

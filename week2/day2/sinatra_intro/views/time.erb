@@ -1,0 +1,10 @@
+<h1>The time is: <%= Time.now.strftime("%H:%M:%S") %><h1>
+<img src="Jupiter1_Juno_960.jpg">
+<ul>
+	<% @ingredients.each do |ingr| %>
+		<li><%= ingr %></li>
+	<% end %>
+</ul>
+
+<h2><a href="/about">go back...</a><h2>
+<a href="/">Home</a>
