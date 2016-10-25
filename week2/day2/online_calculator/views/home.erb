@@ -5,12 +5,23 @@
 </head>
 <body>
 	<h1>Welcome to the Online Calculator!</h1>
-	<h2>Select an option</h2>
+	<h2>Select an option:</h2>
 	<h3>
 		<a href="/add">Add</a> ||
 		<a href="/substract">Substract</a> || 
 		<a href="/multiply">Multiply</a> ||
 		<a href="/divide">Divide</a>
 	</h3>
+	<hr>
+	<h2>Or just do your maths from the form below:</h2>
+	<form action="/calculate" method="POST">
+		<input type="number" name="first_number" placeholder="1st number">
+		<input type="number" name="second_number" placeholder="2nd number">
+
+		<button type="submit" name="operation" value="add">ADD</button>
+		<button type="submit" name="operation" value="substract">SUBSTRACT</button>
+		<button type="submit" name="operation" value="multiply">MULTIPLY</button>
+		<button type="submit" name="operation" value="divide">DIVIDE</button>
+	</form>
 </body>
 </html>

@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'sinatra/reloader' if development?
 require './lib/calculator'
+require "pry"
 
 get '/' do
   erb :home
@@ -25,27 +26,31 @@ end
 post '/calculate_add' do
   first = params[:first_number].to_f
   second = params[:second_number].to_f
-  Calculator.add(first, second)
+  Printer.print(first, second, :add)
 end
 
 post '/calculate_substract' do
   first = params[:first_number].to_f
   second = params[:second_number].to_f
-  Calculator.substract(first, second)
+  Printer.print(first, second, :substract)
 end
 
 post '/calculate_multiply' do
   first = params[:first_number].to_f
   second = params[:second_number].to_f
-  result = first + second
-  Calculator.multiply(first, second)
+  Printer.print(first, second, :multiply)
 end
 
 post '/calculate_divide' do
   first = params[:first_number].to_f
   second = params[:second_number].to_f
-  result = first + second
-  Calculator.divide(first, second)
+  Printer.print(first, second, :divide)
 end
 
+post '/calculate' do
+  operation = params[:operation]
+  first = params[:first_number].to_f
+  second = params[:second_number].to_f
+  Printer.print(first, second, operation)
+end
 
