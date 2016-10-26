@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Online Calculator</title>
+</head>
+<body>
+	<h1>Online Calculator</h1>
+	<img src="/logo.gif" alt="Happy Calc!">
+	<form action="/calc" method="POST">
+		<input type="number" name="first_number" placeholder="1st number" value= <%= @memory %> >
+		<input type="number" name="second_number" placeholder="2nd number">
+		<button type="submit" name="operation" value="add">ADD</button>
+		<button type="submit" name="operation" value="substract">SUBSTRACT</button>
+		<button type="submit" name="operation" value="multiply">MULTIPLY</button>
+		<button type="submit" name="operation" value="divide">DIVIDE</button>
+	</form>
+	<hr>
+	<form action="/mem" method="GET">
+		<button type="submit" name="memory">LOAD MEM</button>
+	</form>
+	<h2>
+		<%= @result_string %>
+	</h2>
+</body>
+</html>
