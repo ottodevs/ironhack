@@ -33,32 +33,32 @@ post '/calculate' do
   erb :result
 end
 
-post '/load_mem' do
+get '/load_mem' do
   @memory = Memorizer.new.load
   erb :result
 end
 
-# Old calculation routes (surpassed by /calculate)
-post '/calculate_add' do
-  first = params[:first_number].to_f
-  second = params[:second_number].to_f
-  Printer.print(first, second, :add)
-end
+# # Old calculation routes (surpassed by /calculate)
+# post '/calculate_add' do
+#   first = params[:first_number].to_f
+#   second = params[:second_number].to_f
+#   Printer.print(first, second, :add)
+# end
 
-post '/calculate_substract' do
-  first = params[:first_number].to_f
-  second = params[:second_number].to_f
-  Printer.print(first, second, :substract)
-end
+# post '/calculate_substract' do
+#   first = params[:first_number].to_f
+#   second = params[:second_number].to_f
+#   Printer.print(first, second, :substract)
+# end
 
-post '/calculate_multiply' do
-  first = params[:first_number].to_f
-  second = params[:second_number].to_f
-  Printer.print(first, second, :multiply)
-end
+# post '/calculate_multiply' do
+#   first = params[:first_number].to_f
+#   second = params[:second_number].to_f
+#   Printer.print(first, second, :multiply)
+# end
 
-post '/calculate_divide' do
-  first = params[:first_number].to_f
-  second = params[:second_number].to_f
-  Printer.print(first, second, :divide)
-end
+# post '/calculate_divide' do
+#   first = params[:first_number].to_f
+#   second = params[:second_number].to_f
+#   Printer.print(first, second, :divide)
+# end
