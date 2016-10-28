@@ -5,6 +5,15 @@
   <br />
   <textarea name="text" placeholder="Are you inspired?"></textarea>
   <br />
+
+  <datalist id='categories'>
+    <% @cats.each do |cat| %>
+    <option value="<%= cat %>">
+      <% end %>
+  </datalist>
+
+  <input class='category' type='text' list='categories' name='category'/>
+<span style='font-size:20px;'>(Space to show categories)</span>
   <button class="btn btn_material" type="submit" name="operation" value="add">Save new post</button>
 </form>
 

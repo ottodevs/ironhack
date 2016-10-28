@@ -1,21 +1,34 @@
-<p class='dashed thick' style='text-align:right; font-size: 20'>
-  <a class='dotted thick' href='/new_post'>
-      &#9997; add new post...
-  </a>
-</p>
+<div class="flex-container">
+<div class="main">
+    <% @posts.each_with_index do |post, index| %>
+    <h2>
+        <a href="/post_details/<%= index %>"><%= post.title %></a>
+    </h2>
 
-<% @posts.each_with_index do |post, index| %>
-  <h2>
-    <a href="/post_details/<%= index %>"><%= post.title %></a>
-  </h2>
+    <h5>
+        <%= post.date_formatted %>
+    </h5>
 
-  <h5>
-    <%= post.date_formatted %>
-  </h5>
+    <p>
+        <%= post.text %>
+    </p>
 
-  <p>
-    <%= post.text %>
+    <br/>
+    <% end %>
+</div>
+
+<div class="cats">
+  <p class='dashed thick' style='text-align:right; font-size: 20'>
+      <a class='dotted thick' href='/new_post'>
+          &#9997; add new post...
+      </a>
   </p>
+    <div class="tagCloud">
+        <p>CATEGORIES</p>
+        <% @cats.each_with_index do |category, index| %>
+        <a href="/category/<%= index %>"><%=category%></a>
+        <% end %>
+    </div>
+    </div>
 
-  <br />
-<% end %>
+</div>

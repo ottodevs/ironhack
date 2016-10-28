@@ -5,9 +5,9 @@ describe Blog do
 
   before :each do
     @blog = Blog.new
-    @post = Post.new('title', 'text')
-    @post2 = Post.new('title2', 'text2')
-    @post3 = Post.new('title3', 'text3')
+    @post = Post.new('title', 'text', 'author')
+    @post2 = Post.new('title2', 'text2', 'author')
+    @post3 = Post.new('title3', 'text3', 'author', 'category')
   end
 
   describe '#posts' do
@@ -54,5 +54,25 @@ describe Blog do
       [@post, @post3, @post2].each { |p| @blog.add_post p }
       expect(@blog.latest_posts).to eql [@post3, @post2, @post]
     end
+  end
+
+  describe '#find_by_category' do
+    it 'should return an array' do
+      expect(@blog.find_by_category('Uncategorized')).to be_a(Array)
+    end
+
+    it 'should return the posts inside that category' do
+      [@post, @post3, @post2].each { |p| @blog.add_post p }
+      expect(@blog.find_by_category('category')).to eql [@post3]
+      expect(@blog.find_by_category('category')).to contain_exactly(@post3)
+    end
+  end
+
+  describe '#categories' do
+    it 'should return an array with each category' do
+      [@post, @post3, @post2].each { |p| @blog.add_post p }
+      expect(@blog.categories).to contain_exactly('Uncategorized', 'category')
+    end
+    
   end
 end

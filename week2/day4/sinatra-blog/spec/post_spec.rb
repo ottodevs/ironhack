@@ -3,8 +3,9 @@ require './models/post'
 describe Post do
 
   before :each do
-    @post1 = Post.new('title1', 'text1')
-    @post2 = Post.new('title2', 'text2')
+    @post1 = Post.new('title1', 'text1', 'author')
+    @post2 = Post.new('title2', 'text2', 'author')
+    @post3 = Post.new('title3', 'text3', 'author', 'Category')
   end
 
   describe '#title' do
@@ -39,6 +40,27 @@ describe Post do
     it 'should be always a string!' do
       expect(@post1.text). to be_a(String)
     end
+  end
 
+  describe '#author' do
+    it 'should return the author' do
+      expect(@post1.author).to eq('author')
+      expect(@post2.author).to eq('author')
+    end
+
+    it 'should be always a string!' do
+      expect(@post1.author). to be_a(String)
+    end
+  end
+
+  describe '#category' do
+    it 'should be Uncategorized if not defined' do
+      expect(@post1.category).to eq('Uncategorized')
+      expect(@post2.category).to eq('Uncategorized')
+    end
+
+    it 'should be the defined category' do
+      expect(@post3.category). to eq('Category')
+    end
   end
 end

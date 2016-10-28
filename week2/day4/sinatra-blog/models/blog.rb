@@ -21,4 +21,12 @@ class Blog
   @posts.select { |p| p.title == title }
   .first
   end
+
+  def find_by_category(category)
+    @posts.select { |p| p.category == category }
+  end
+
+  def categories
+    @posts.map { |p| p.category }.uniq
+  end
 end

@@ -1,93 +1,137 @@
 @import url(https://fonts.googleapis.com/css?family=Patrick+Hand+SC);
-*{
-  box-sizing:border-box;
-}
-html, body{
-  justify-content:center;
-  background:#F0F0D8;
-  font-family: 'Patrick Hand SC', cursive;
+* {
+    box-sizing: border-box;
 }
 
-a{
-  color: #41403E;
-  text-decoration: none
+html, body {
+    justify-content: center;
+    background: #F0F0D8;
+    font-family: 'Patrick Hand SC', cursive;
 }
 
-h1{
-  font-size: 50px;
+a {
+    color: #41403E;
+    text-decoration: none
 }
 
-h2{
-  font-size: 35px;
-  color: #41403E;
+h1 {
+    font-size: 50px;
 }
 
-p{
-  font-size: 20px;
+h2 {
+    font-size: 35px;
+    color: #41403E;
 }
 
-textarea{
-  resize: none;
-font-size: 18pt;
-border: 2px solid #41403E;
-font-family: 'Fira Sans', 'Source Sans Pro', 'Open Sans', Roboto, 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', 'Myriad Pro', 'Segoe UI', Myriad, Helvetica, 'Lucida Grande', 'DejaVu Sans Condensed', 'Liberation Sans', 'Nimbus Sans L', Tahoma, Geneva, Arial, sans-serif;
+p {
+    font-size: 20px;
+}
+
+textarea {
+    resize: none;
+    font-size: 18pt;
+    border: 2px solid #41403E;
+    font-family: 'Fira Sans', 'Source Sans Pro', 'Open Sans', Roboto, 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', 'Myriad Pro', 'Segoe UI', Myriad, Helvetica, 'Lucida Grande', 'DejaVu Sans Condensed', 'Liberation Sans', 'Nimbus Sans L', Tahoma, Geneva, Arial, sans-serif;
 }
 
 .btn {
-  background: transparent;
-  border: 2px solid #41403E;
-  color: #41403E;
-  display: inline-block;
-  margin: 0;
-  padding: 8px 16px;
-  font-family: 'Patrick Hand SC', cursive;
-  font-size: 20px;
-  float: right;
-  vertical-align:text-bottom;
+    background: transparent;
+    border: 2px solid #41403E;
+    color: #41403E;
+    display: inline-block;
+    margin: 0;
+    padding: 8px 16px;
+    font-family: 'Patrick Hand SC', cursive;
+    font-size: 20px;
+    float: right;
+    vertical-align: text-bottom;
 }
 
 .btn_material {
-  overflow: hidden;
-  position: relative;
+    overflow: hidden;
+    position: relative;
 }
 
 .btn_material:after {
-  background: #41403E;
-  border-radius: 50%;
-  content: "";
-  height: 1px;
-  left: 50%;
-  position: absolute;
-  top: 50%;
-  width: 1px;
-  transform: translateX(-50%) translateY(-50%);
+    background: #41403E;
+    border-radius: 50%;
+    content: "";
+    height: 1px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    width: 1px;
+    transform: translateX(-50%) translateY(-50%);
 }
 
 .btn_material:active {
-  &:after {
-    height: 50px;
-    width: 50px;
-    animation: ripple 1s;
-  }
+    &:after {
+        height: 50px;
+        width: 50px;
+        animation: ripple 1s;
+    }
 }
 
 @keyframes ripple {
     from {
-      transform: scale(1);
-      opacity: 0.4;
+        transform: scale(1);
+        opacity: 0.4;
     }
     to {
-      transform: scale(100);
-      opacity: 0;
+        transform: scale(100);
+        opacity: 0;
     }
 }
 
 .title {
-  width: 100%;
-font-size: 20pt;
-margin-bottom: 1em;
-padding: 10px 8px;
-border: 2px solid #41403E;
-font-family: 'Fira Sans', 'Source Sans Pro', 'Open Sans', Roboto, 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', 'Myriad Pro', 'Segoe UI', Myriad, Helvetica, 'Lucida Grande', 'DejaVu Sans Condensed', 'Liberation Sans', 'Nimbus Sans L', Tahoma, Geneva, Arial, sans-serif;
+    width: 100%;
+    font-size: 20pt;
+    margin-bottom: 1em;
+    padding: 10px 8px;
+    border: 2px solid #41403E;
+    font-family: 'Fira Sans', 'Source Sans Pro', 'Open Sans', Roboto, 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', 'Myriad Pro', 'Segoe UI', Myriad, Helvetica, 'Lucida Grande', 'DejaVu Sans Condensed', 'Liberation Sans', 'Nimbus Sans L', Tahoma, Geneva, Arial, sans-serif;
+}
 
+.category {
+  width: 25%;
+  font-size: 20pt;
+  margin-bottom: 1em;
+  padding: 10px 8px;
+  border: 2px solid #41403E;
+  font-family: 'Fira Sans', 'Source Sans Pro', 'Open Sans', Roboto, 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', 'Myriad Pro', 'Segoe UI', Myriad, Helvetica, 'Lucida Grande', 'DejaVu Sans Condensed', 'Liberation Sans', 'Nimbus Sans L', Tahoma, Geneva, Arial, sans-serif;
+}
+
+.tagCloud {
+  width: 33.333%;
+  margin: 50px auto;
+}
+
+.tagCloud a {
+  color: #eaeaea;
+  font-size : 20px;
+  text-decoration: none;
+  white-space: nowrap;
+  line-height: 2.75;
+  padding: 10px 16px;
+  background: #41403E;
+  opacity: 1;
+  @include single-transition (opacity, 0.3s, ease);
+  &:hover, &:active, &:focus {
+  opacity: 0.75;
+  }
+}
+
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+}
+
+.cats {
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+.main {
+    -webkit-flex: 2;
+    flex: 2;
 }

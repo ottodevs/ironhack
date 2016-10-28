@@ -1,5 +1,18 @@
 <h1><%= @post.title %></h1>
+
 <h2><%= @post.text %></h2>
-<h3><%= @post.date_formatted %></h3>
-<br />
-<p style='text-align:right;'><a href='/'>Back</a></p>
+
+<h3 style='text-align:right;'>
+    by
+    <%= @post.author %>
+</h3>
+
+<h5 style='text-align:right;'>
+    <%= @post.date_formatted %>
+    in
+    <%= @post.category %>
+</h5>
+<br/>
+<p style='text-align:right;'>
+    <a href='/'>Back</a>
+</p>
