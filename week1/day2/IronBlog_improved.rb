@@ -5,105 +5,105 @@ require 'io/console'
 
 class Blog
 
-	def initialize
-		@posts =[]
-	end
+  def initialize
+    @posts =[]
+  end
 
-	def add_post(post)
-		@posts.push(post)
-	end
+  def add_post(post)
+    @posts.push(post)
+  end
 
-	def publish_front_page(index = 0)
-		system "clear"
-		sorted_posts = @posts.sort_by {|post| post.date}.reverse
+  def publish_front_page(index = 0)
+    system "clear"
+    sorted_posts = @posts.sort_by {|post| post.date}.reverse
 
-		sorted_posts.slice(index, 3).each { |post| post.paint }
+    sorted_posts.slice(index, 3).each { |post| post.paint }
 
-		# num paginas
-		a = (index * 1/3) + 1
-		n = 0
+    # num paginas
+    a = (index * 1/3) + 1
+    n = 0
 
-		if sorted_posts.size % 3 == 0
-			n = sorted_posts.size/3
-		else
-			n = (sorted_posts.size * 1/3) + 1
-		end
+    if sorted_posts.size % 3 == 0
+      n = sorted_posts.size/3
+    else
+      n = (sorted_posts.size * 1/3) + 1
+    end
 
-		puts
-		(1..n).each do |p|
-			if  a == p
-				print "#{p} ".colorize(:red)
-			else
-				print "#{p} "
-			end
-		end
-		puts
+    puts
+    (1..n).each do |p|
+      if  a == p
+        print "#{p} ".colorize(:red)
+      else
+        print "#{p} "
+      end
+    end
+    puts
 
-		# opcion pasar pagina
-		print " < > "
+    # opcion pasar pagina
+    print " < > "
 
-		input = read_char
+    input = read_char
 
-		#action = gets.chomp.downcase
-		if input == "\e[C"
-			if index <= sorted_posts.size - 4
-				publish_front_page(index + 3)
-			else
-				publish_front_page
-			end
-			
-		elsif input == "\e[D"
-			if   index >= 3
-				publish_front_page(index - 3) 
-			else
-				publish_front_page(index + 3 * (n - 1))
-			end
-		else
-			puts "Command not found, try again"
-		end
-	end
+    #action = gets.chomp.downcase
+    if input == "\e[C"
+      if index <= sorted_posts.size - 4
+        publish_front_page(index + 3)
+      else
+        publish_front_page
+      end
 
-	
-	def read_char
-		STDIN.echo = false
-		STDIN.raw!
+    elsif input == "\e[D"
+      if   index >= 3
+        publish_front_page(index - 3)
+      else
+        publish_front_page(index + 3 * (n - 1))
+      end
+    else
+      puts "Command not found, try again"
+    end
+  end
 
-		input = STDIN.getc.chr
-		if input == "\e" then
-			input << STDIN.read_nonblock(3) rescue nil
-			input << STDIN.read_nonblock(2) rescue nil
-		end
-	ensure
-		STDIN.echo = true
-		STDIN.cooked!
 
-		return input
-	end
+  def read_char
+    STDIN.echo = false
+    STDIN.raw!
+
+    input = STDIN.getc.chr
+    if input == "\e" then
+      input << STDIN.read_nonblock(3) rescue nil
+      input << STDIN.read_nonblock(2) rescue nil
+    end
+  ensure
+    STDIN.echo = true
+    STDIN.cooked!
+
+    return input
+  end
 
 
 end
 
 
 class Post
-	attr_reader :date, :title, :text
-	def initialize(title, date, text)
-		@title = title
-		@date = date
-		@text = text
-	end
+  attr_reader :date, :title, :text
+  def initialize(title, date, text)
+    @title = title
+    @date = date
+    @text = text
+  end
 
-	def paint
-		puts "#{@title} \n#{"*" * 14 } \n#{@text} \n#{"-" * 20}"
-	end
+  def paint
+    puts "#{@title} \n#{"*" * 14 } \n#{@text} \n#{"-" * 20}"
+  end
 end
 
 class SponsoredPost < Post
-	attr_reader :date, :title, :text
-	def initialize(title, date, text)
-		@title = "****** #{title} ******"
-		@date = date
-		@text = text
-	end
+  attr_reader :date, :title, :text
+  def initialize(title, date, text)
+    @title = "****** #{title} ******"
+    @date = date
+    @text = text
+  end
 end
 
 ironhack_blog = Blog.new
@@ -128,5 +128,3 @@ ironhack_blog.add_post(SponsoredPost.new("Post 18", Date.new(2016,12,1), "como e
 
 
 ironhack_blog.publish_front_page
-
-
