@@ -1,0 +1,21 @@
+<p class='dashed thick' style='text-align:right; font-size: 20'>
+  <a class='dotted thick' href='/new_post'>
+      &#9997; add new post...
+  </a>
+</p>
+
+<% @posts.each_with_index do |post, index| %>
+  <h2>
+    <a href="/post_details/<%= index %>"><%= post.title %></a>
+  </h2>
+
+  <h5>
+    <%= post.date_formatted %>
+  </h5>
+
+  <p>
+    <%= post.text %>
+  </p>
+
+  <br />
+<% end %>
