@@ -1,47 +1,31 @@
 // Write your Pizza Builder JavaScript in this file.
 $(document).ready(function () {
-  console.log('werwer')
+  setupButtons()
   updatePrice()
-  $('.btn').click(function () {
-    updatePrice()
-  })
-
-  $('.btn-pepperonni').click(function () {
-    $('.pep').toggle()
-    $('li:contains("pepperonni")').toggle()
-    $(this).toggleClass('active')
-  })
-
-  $('.btn-mushrooms').click(function () {
-    $('.mushroom').toggle()
-    $('li:contains("mushrooms")').toggle()
-    $('.btn-mushrooms').toggleClass('active')
-  })
-
-  $('.btn-green-peppers').click(function () {
-    $('.green-pepper').toggle()
-    $('li:contains("green peppers")').toggle()
-    $('.btn-green-peppers').toggleClass('active')
-  })
-
-  $('.btn-sauce').click(function () {
-    $('.sauce').toggleClass('sauce-white')
-    $('li:contains("white sauce")').toggle()
-    $('.btn-sauce').toggleClass('active')
-  })
-
-  $('.btn-crust').click(function () {
-    $('.crust').toggleClass('crust-gluten-free')
-    $('li:contains("gluten-free crust")').toggle()
-    $('.btn-crust').toggleClass('active')
-  })
 })
 
+function setupButtons () {
+  var buttons = $('.btn')
+  var toppings = ['pep', 'mushroom', 'green-pepper', 'sauce', 'crust', 'sauce-white', 'crust-gluten-free']
+  for (let i = 0; i < buttons.length; i++) { // let is important here
+    $(buttons[i]).click(function () {
+      $(this).toggleClass('active')
+      var panelSelector = $(this).text().toLowerCase()
+      $(`.price>ul>li:contains(${panelSelector})`).toggle()
+      if (i < 3)
+        { $(`.${toppings[i]}`).toggle() }
+      else
+        { $(`.${toppings[i]}`).toggleClass(`${toppings[i + 2]}`) }
+      updatePrice()
+    })
+  }
+}
+
 function updatePrice () {
-  var prices = $('li:visible:contains("$")')
   var price = 10
-  for (var i = 0; i < prices.length; i++) {
-    price += parseInt($(prices[i]).text()[1])
+  var activeToppings = $('.controls>ul>li').children('.active')
+  for (var i = 0; i < activeToppings.length; i++) {
+    price += parseInt($(activeToppings[i]).attr('data-price'))
   }
   $('strong').text('$' + price)
 }
