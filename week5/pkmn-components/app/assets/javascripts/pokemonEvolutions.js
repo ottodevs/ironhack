@@ -1,12 +1,13 @@
 /* global $, PokemonApp */
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
-PokemonApp.Pokemon = function (pokemonUri) {
-  this.id = PokemonApp.idFromUri(pokemonUri)
+PokemonApp.PokemonEvolutions = function (id, info) {
+  this.id = id
+  this.info = info
 }
 
-PokemonApp.Pokemon.prototype.render = function () {
-  console.log(`Rendering pokemon: #${this.id}`)
+PokemonApp.PokemonEvolutions.prototype.render = function () {
+  console.log(`Rendering evolutions for: #${this.id}`)
 
   $.ajax({
     url: `api/pokemon/${this.id}`,
