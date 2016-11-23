@@ -15,6 +15,17 @@ class TournamentsController < ApplicationController
     render status: 201, json: tournament
   end
 
+  def delete
+    tournament = Tournament.find_by(id: params[:id])
+    unless tournament
+      render json: { error: 'tournament not found'},
+                     status: 404
+      return
+    end
+    tournament.destroy
+    render json: tournament
+  end
+
   private
 
   def tournament_params
